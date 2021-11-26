@@ -51,8 +51,8 @@ def retrieveARgs():
 
 ###################################################################################################################
 inputfolder, emtfile = retrieveARgs()
-print ('Input file is', inputfolder)
-print ('Output file is', emtfile)
+#print ('Input file is', inputfolder)
+#print ('Output file is', emtfile)
 
 
 files_dfs = [] 
@@ -61,7 +61,7 @@ for f in glob.glob(inputfolder+"/*"):
 	if f.endswith('.csv') == False : 
 		continue
 
-	print (f)
+	#print (f)
 	df = pd.read_csv(f,  sep=',', skiprows = 1, nrows=250)
 
 	source=retrieveName(f)
@@ -78,11 +78,11 @@ for f in glob.glob(inputfolder+"/*"):
 df_merged = reduce(lambda  left,right: pd.merge(left,right,on=['gene_name'],
 													how='outer'), files_dfs)
 print(df_merged)
-df_merged.to_csv('CTNNB1_significant.csv', index=False)  
+df_merged.to_csv('significant.csv', index=False)  
 
 
 genes = df_merged["gene_name"].to_numpy()
-print (type(genes))
+#print (type(genes))
 
 emt_genes = readFile(emtfile)
 #print(emt_genes)
